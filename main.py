@@ -41,9 +41,14 @@ class MyClient(discord.Client):
                 for user in mentions:
                     await user.timeout(timedelta(seconds=secs), reason=message.content)
                     await message.reply(f"Muted {user.mention} for {secs} seconds")
+    
+    async def on_member_join(self, member):
+        channel = self.get_channel(1196700464549462088)
+        await channel.send(f"Welcome to the server, {member.mention}")
 
 
 intents = discord.Intents.default()
 intents.message_content = True
+intents.members = True
 client = MyClient(intents=intents)
 client.run(os.getenv("DISCORD_TOKEN"))
