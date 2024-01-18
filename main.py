@@ -51,4 +51,4 @@ intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
 client = MyClient(intents=intents)
-client.run(os.getenv("DISCORD_TOKEN"))
+client.run(os.getenv("DISCORD_TOKEN"), reconnect=True)
