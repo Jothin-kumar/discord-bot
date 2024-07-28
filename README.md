@@ -1,3 +1,5 @@
+[`Join my Discord server`](https://joth.in/dc)
+
 # muting members (Uses discord's timeout functionality)
 
 `mute @member1 @member2 etc... (optional reason anywhere in the message) 60s`
