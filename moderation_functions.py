@@ -21,7 +21,7 @@ async def ban(msg):
 async def mute(msg):
     days = 0
     hrs = 0
-    mins = 1
+    mins = 0
     secs = 0
     for word in "".join([l for l in msg.content if l.isalnum() or l == " "]).split()[::-1]:
         try:
@@ -36,6 +36,8 @@ async def mute(msg):
                     secs = int(word[:-1])
         except ValueError:
             pass
+    if not any([days, hrs, mins, secs]):
+        mins = 1
     for user in msg.mentions:
         try:
             await user.timeout(
