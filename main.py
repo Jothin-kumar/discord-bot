@@ -15,13 +15,15 @@ with open("config.json", "r") as f:
 
 class MyClient(discord.Client):
     async def on_ready(self):
-        print('Logged on as', self.user)
+        self.bot_log_channel = self.get_channel(config["bot-log-channel-id"])
+        self.owner = await self.fetch_user(config["owner-id"])
+        await self.bot_log_channel.send(f"Hi {self.owner.mention}, I'm online!")
 
     async def on_message(self, message):
         if message.author == self.user:
             return
 
-        msg_from_server_owner = message.author.name == config["owner-username"]
+        msg_from_server_owner = message.author.id == self.owner.id
         if msg_from_server_owner:
             if "shutdown" in message.content.lower() and self.user.mention in message.content:
                 self.shutdown_code = randint(1000, 9999)

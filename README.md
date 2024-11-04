@@ -16,8 +16,9 @@ DISCORD_TOKEN=<bot token here>
 
 ```json
 {
-    "owner-username": "<your username>",
-    "welcome-channel-id": <channel id>
+    "owner-id": <your id>,
+    "welcome-channel-id": <channel id>,
+    "bot-log-channel-id": <channel id>
 }
 ```
 
