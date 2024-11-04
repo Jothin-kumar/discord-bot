@@ -8,7 +8,7 @@ async def kick(msg):
             await user.kick(reason=msg.content)
             await msg.reply(f"Kicked {user.mention}")
         except errors.Forbidden:
-            await msg.reply(f"**Uh oh! I can't kick {user.mention}**\nKindly make sure that I have the necessary permissions and that the user isn't superior to me")
+            await msg.reply(f"**I can't kick {user.mention}**\n\nKindly make sure that I have the necessary permissions and that the user isn't superior to me")
 
 async def ban(msg):
     for user in msg.mentions:
@@ -16,7 +16,7 @@ async def ban(msg):
             await user.ban(reason=msg.content)
             await msg.reply(f"Banned {user.mention}")
         except errors.Forbidden:
-            await msg.reply(f"**Uh oh! I can't ban {user.mention}**\nKindly make sure that I have the necessary permissions and that the user isn't superior to me")
+            await msg.reply(f"**I can't ban {user.mention}**\n\nKindly make sure that I have the necessary permissions and that the user isn't superior to me")
 
 async def mute(msg):
     days = 0
@@ -44,7 +44,7 @@ async def mute(msg):
             )
             await msg.reply(f"Muted {user.mention} for {f'{days} days ' if days else ''}{f'{hrs} hours ' if hrs else ''}{f'{mins} minutes ' if mins else ''}{f'{secs} seconds' if secs else ''}")
         except errors.Forbidden:
-            await msg.reply(f"**Uh oh! I can't mute {user.mention}**\nKindly make sure that I have the necessary permissions and that the user isn't superior to me")
+            await msg.reply(f"**I can't mute {user.mention}**\n\nKindly make sure that I have the necessary permissions and that the user isn't superior to me")
 
 async def unmute(msg):
     for user in msg.mentions:
@@ -52,4 +52,4 @@ async def unmute(msg):
             await user.timeout(None, reason=msg.content)
             await msg.reply(f"Unmuted {user.mention}")
         except errors.Forbidden:
-            await msg.reply(f"**Uh oh! I can't unmute {user.mention}**\nKindly make sure that I have the necessary permissions and that the user isn't superior to me")
+            await msg.reply(f"**I can't unmute {user.mention}**\n\nKindly make sure that I have the necessary permissions and that the user isn't superior to me")
