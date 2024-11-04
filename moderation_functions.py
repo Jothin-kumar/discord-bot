@@ -16,7 +16,7 @@ async def mute(msg):
     hrs = 0
     mins = 1
     secs = 0
-    for word in "".join([l for l in msg.content if l.isalphanum() or l == " "]).split()[::-1]:
+    for word in "".join([l for l in msg.content if l.isalnum() or l == " "]).split()[::-1]:
         try:
             match word[-1]:
                 case "d":
