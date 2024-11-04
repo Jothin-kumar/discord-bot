@@ -34,11 +34,13 @@ The default duration is `1 minute`. To change this, add seconds in numeric value
 - Valid: `30s`
 - Invalid: `30 s`
 
-Similarly, m for minutes, h for hours and d for days can be used.
+Similarly, m for minutes, h for hours, d for days and w for weeks can be used.
+
+Due to discord limitations, the maximum duration is `4 weeks`.
 
 To unmute a member, use the `unmute` command.
 
-**If an already muted member is muted again, the previous timeout is cancelled**
+If an already muted member is muted again, the previous timeout is cancelled and the new one is set.
 
 ### Banning members
 
