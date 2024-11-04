@@ -21,6 +21,12 @@ DISCORD_TOKEN=<bot token here>
 }
 ```
 
+## Basic commands
+
+### shutdown
+
+ping the bot and include the word `shutdown` in the message to shut down the bot.
+
 ## Moderation commands
 
 ### muting / unmuting members (Uses discord's timeout functionality)

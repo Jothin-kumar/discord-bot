@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 from json import load
+from random import randint
 
 from moderation_functions import kick, ban, mute, unmute
 
@@ -22,6 +23,14 @@ class MyClient(discord.Client):
 
         msg_from_server_owner = message.author.name == config["owner-username"]
         if msg_from_server_owner:
+            if "shutdown" in message.content.lower() and self.user.mention in message.content:
+                self.shutdown_code = randint(1000, 9999)
+                await message.channel.send(f"Are you sure you want to shut me down? type {self.shutdown_code} and ping me to confirm.")
+                return
+            if hasattr(self, 'shutdown_code') and str(self.shutdown_code) in message.content and self.user.mention in message.content:
+                await message.channel.send("Shutting down...")
+                await self.close()
+                return
             match message.content.lower().split()[0]:
                 case "kick":
                     await kick(message)
