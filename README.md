@@ -1,31 +1,53 @@
-[`Join my Discord server`](https://joth.in/dc)
+# Discord server bot
 
-# muting members (Uses discord's timeout functionality)
+Built for using in [Jothin Kumar's Discord server](https://joth.in/dc). Open source and free for anyone to use.
+
+Currently, the bot is in development and only has moderation commands. GitHub integration and other features will be added soon.
+
+## Configuration
+
+- `.env` should be present in the root directory with the following content:
+
+```env
+DISCORD_TOKEN=<bot token here>
+```
+
+- `config.json` should be present in the root directory with the following content:
+
+```json
+{
+    "owner-username": "<your username>",
+    "welcome-channel-id": <channel id>
+}
+```
+
+## Moderation commands
+
+### muting / unmuting members (Uses discord's timeout functionality)
 
 `mute @member1 @member2 etc... (optional reason anywhere in the message) 60s`
 
 **All members** mentioned in any message starting with "mute" will be **muted**.
 
-The default duration is `60 seconds`. To change this, add seconds in numeric value followed by a `s` anywhere in the message (If this occurs more than once, first occurence is considered).
- - Valid: `30s`
- - Invalid: `30 s`
+The default duration is `1 minute`. To change this, add seconds in numeric value followed by a `s` anywhere in the message (If this occurs more than once, first occurence is considered).
 
-To unmute, just set the duration to `0s`.
+- Valid: `30s`
+- Invalid: `30 s`
+
+Similarly, m for minutes, h for hours and d for days can be used.
+
+To unmute a member, use the `unmute` command.
 
 **If an already muted member is muted again, the previous timeout is cancelled**
 
-# Banning members
+### Banning members
 
 `ban @member1 @member2 etc... (optional reason anywhere in the message)`
 
 **All members** mentioned in any message starting with "ban" will be **banned**.
 
-# Kicking members
+### Kicking members
 
 `kick @member1 @member2 etc... (optional reason anywhere in the message)`
 
 **All members** mentioned in any message starting with "kick" will be **kicked**.
-
-# Welcoming users
-
-Welcome messages are sent in `#hello-world`.
