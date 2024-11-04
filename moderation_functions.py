@@ -38,12 +38,13 @@ async def mute(msg):
             pass
     if not any([days, hrs, mins, secs]):
         mins = 1
+    td = timedelta(days=days, hours=hrs, minutes=mins, seconds=secs)
+    if td.total_seconds() > 60*60*24*7*4:
+        await msg.reply("I can't mute an user for more than 4 weeks")
+        return
     for user in msg.mentions:
         try:
-            await user.timeout(
-                timedelta(days=days, hours=hrs, minutes=mins, seconds=secs),
-                reason=msg.content
-            )
+            await user.timeout(td, reason=msg.content)
             await msg.reply(f"Muted {user.mention} for {f'{days} days ' if days else ''}{f'{hrs} hours ' if hrs else ''}{f'{mins} minutes ' if mins else ''}{f'{secs} seconds' if secs else ''}")
         except errors.Forbidden:
             await msg.reply(f"**I can't mute {user.mention}**\n\nKindly make sure that I have the necessary permissions and that the user isn't superior to me")
