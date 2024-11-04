@@ -2,10 +2,14 @@ import discord
 import os
 from dotenv import load_dotenv
 from pathlib import Path
+from json import load
+
 from moderation_functions import kick, ban, mute, unmute
 
 dotenv_path = Path('.env')
 load_dotenv(dotenv_path=dotenv_path)
+with open("config.json", "r") as f:
+    config = load(f)
 
 
 class MyClient(discord.Client):
@@ -16,7 +20,7 @@ class MyClient(discord.Client):
         if message.author == self.user:
             return
 
-        msg_from_server_owner = message.author.name == "jothinkumar"
+        msg_from_server_owner = message.author.name == config["owner-username"]
         if msg_from_server_owner:
             match message.content.lower().split()[0]:
                 case "kick":
@@ -29,7 +33,7 @@ class MyClient(discord.Client):
                     await unmute(message)
     
     async def on_member_join(self, member):
-        channel = self.get_channel(1196700464549462088)
+        channel = self.get_channel(config["welcome-channel-id"])
         await channel.send(f"Welcome to the server, {member.mention}")
 
 
