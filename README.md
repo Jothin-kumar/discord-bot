@@ -2,7 +2,7 @@
 
 Built for using in [Jothin Kumar's Discord server](https://joth.in/dc). Open source and free for anyone to use.
 
-Currently, the bot is in development and only has moderation commands. GitHub integration and other features will be added soon.
+Currently, the bot is in development and only has moderation commands and welcomes new users. GitHub integration and other features will be added soon.
 
 ## Configuration
 
