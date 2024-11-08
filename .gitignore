@@ -3,3 +3,5 @@
 .venv
 __pycache__
 config.json
+chatbot-data.txt
+chatbot-query-template.txt

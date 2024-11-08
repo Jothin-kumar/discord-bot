@@ -6,6 +6,7 @@ from json import load
 from random import randint
 
 from moderation_functions import kick, ban, mute, unmute
+from chatbot import get_response
 
 dotenv_path = Path('.env')
 load_dotenv(dotenv_path=dotenv_path)
@@ -36,12 +37,25 @@ class MyClient(discord.Client):
             match message.content.lower().split()[0]:
                 case "kick":
                     await kick(message)
+                    return
                 case "ban":
                     await ban(message)
+                    return
                 case "mute":
                     await mute(message)
+                    return
                 case "unmute":
                     await unmute(message)
+                    return
+        
+        if self.user.mention in message.content or message.reference is not None and message.reference.resolved.author == self.user:
+            prev_msg_ref = message.reference
+            async with message.channel.typing():
+                await message.reply(get_response(
+                    "" if prev_msg_ref is None else
+                    f"Previous message by {prev_msg_ref.resolved.author.name.replace(self.user.name, 'you')}: {prev_msg_ref.resolved.content}",
+                    message.clean_content   .replace(self.user.mention, "Server Bot")
+                ))
     
     async def on_member_join(self, member):
         channel = self.get_channel(config["welcome-channel-id"])
