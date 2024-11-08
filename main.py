@@ -54,7 +54,7 @@ class MyClient(discord.Client):
                 await message.reply(get_response(
                     "" if prev_msg_ref is None else
                     f"Previous message by {prev_msg_ref.resolved.author.name.replace(self.user.name, 'you')}: {prev_msg_ref.resolved.content}",
-                    message.clean_content   .replace(self.user.mention, "Server Bot")
+                    message.clean_content.replace("@" + self.user.name, "")
                 ))
     
     async def on_member_join(self, member):
